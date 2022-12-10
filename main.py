@@ -24,7 +24,7 @@ def calculate_average_shortest_path_in_random_graph(n_and_e:str):
         G0 = G.subgraph(max(nx.connected_components(G), key=len))
 
         # show how many giant component has nodes and  edges
-        print(G0)
+        # print(G0)
         # nx.draw(G)
 
         # find average shortest path length in giant components
@@ -42,15 +42,31 @@ if __name__ == "__main__":
         (10**2, 2.5): None,
         (10**2, 3): None,
         (10**2, 5): None,
-        (10**4, 2) : None,
-        (10**4, 2.5): None,
-        (10**4, 3): None,
-        (10**4, 5): None,
+        (500, 2) : None,
+        (500, 2.5): None,
+        (500, 3): None,
+        (500, 5): None,
+        (10**3, 2) : None,
+        (10**3, 2.5): None,
+        (10**3, 3): None,
+        (10**3, 5): None,
+        (2*10**3, 2) : None,
+        (2*10**3, 2.5): None,
+        (2*10**3, 3): None,
+        (2*10**3, 5): None,
+        (4*10**3, 2) : None,
+        (4*10**3, 2.5): None,
+        (4*10**3, 3): None,
+        (4*10**3, 5): None,
+        (6*10**3, 2) : None,
+        (6*10**3, 2.5): None,
+        (6*10**3, 3): None,
+        (6*10**3, 5): None,
     }
     for key in must_be_calculate:
         res = []
         with Pool(10) as p:
-            res = p.map(calculate_average_shortest_path_in_random_graph, [str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1])])
+            res = p.map(calculate_average_shortest_path_in_random_graph, [str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1]), str(key[0])+"_"+str(key[1])])
         must_be_calculate[key] = average(res)
-        print(key, res)
+        print("for node and lambda:",key, ' <d> in 10 times try:', res, " average <d> is:", average(res))
     print(must_be_calculate)
